@@ -12,20 +12,9 @@ const RegistrationPage = () => {
   const [error, setError] = useState('');
 
   
-  const mockCredentials = {
-    restaurant: {
-      name: 'restaurant',
-      email: 'restaurant@gmail.com',
-      password: 'password'
-    },
-    foodBank: {
-      name: 'foodbank',
-      email: 'foodbank@gmail.com',
-      password: 'password'
-    }
-  };
+  
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
