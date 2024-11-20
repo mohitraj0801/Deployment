@@ -164,10 +164,11 @@ const LoginPage = () => {
               </button>
               <div className="text-center text-sm">
                 <span className="text-gray-600">Don't have an account? </span>
-                <a href="#" className="text-blue-600 hover:underline">
+                <Link to="/register" className="text-blue-600 hover:underline">
                   Create an account
-                </a>
+                </Link>
               </div>
+
             </form>
           </div>
         </div>

@@ -1,0 +1,30 @@
+[33m24b7bfc[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfrontend[m[33m, [m[1;31morigin/frontend[m[33m, [m[1;32mmaster[m[33m)[m  added FoodBankDashboard , RestaurantDashboard and updated MealConnectApp
+[33mf7f8e5d[m added order confirmation page
+[33m7ec0ac1[m added AvailableFoodBanks page , FoodBankDetails page & MealConnectApp page
+[33m41d5e7e[m  added About Page
+[33ma436cde[m  updated Restaurant Food Page
+[33mbdb1df8[m  updated Restaurant Food Page
+[33mc376eb9[m  added Restaurant Food Page
+[33m8f664a2[m  added Delivery Page
+[33m5c38b68[m  removed spaces at top of FoodHeroes
+[33mfa697dd[m updated button in Food Heroes
+[33mb5e1f7c[m  added Mission, help, review pages in Home
+[33mb5985ac[m Updated App.js in frontend branch
+[33mdcab12c[m  added Food Heroes Page
+[33mdf047be[m updated foodbank form
+[33m8f02455[m Updated Restaurant Form
+[33m07799c8[m updated Registration Page
+[33mdd2cd5a[m Added routing for login and registration pages.
+[33m98ed846[m Merge branch 'main' of https://github.com/InternLay-HG/Code_smaShers into Frontend
+[33m7a4e3fb[m Added Leaf Icon
+[33mf9681ad[m updated home page design
+[33m4ca3a0e[m Update README.md
+[33mdbc470c[m Updated README.md
+[33m81d4053[m Update README.md
+[33m3871999[m Create homepage layout
+[33m218af5f[m Deleted README.md file
+[33m82f78f5[m Merge branch 'Mohit' of https://github.com/InternLay-HG/Code_smaShers into Mohit
+[33m1d4f6b7[m  Started Frontend with React
+[33m862615a[m Initialize project using Create React App
+[33mcd75a1e[m Create README.md
+[33m1f1a31f[m Initial commit
