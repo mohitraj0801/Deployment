@@ -29,16 +29,28 @@ const LoginPage = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    
-    const mockEmail = 'user@gmail.com';
-    const mockPassword = 'password';
+  const handleLogin = async (e) => {
+    e.preventDefault(); // Prevent the default form submission
 
-    if (email === mockEmail && password === mockPassword) {
-      navigate('/register'); 
+    const response = await fetch("http://localhost:5002/api/auth/login", { // Adjust the endpoint as necessary
+      method: "POST", // Use POST for login
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    console.log(response);
+
+
+    if (response.ok) {
+      const data = await response.json();
+      // Handle successful login (e.g., save token, redirect user)
+      console.log(data);
+      navigate('/restaurant-form'); // Navigate to home page on successful login
     } else {
-      alert('Invalid credentials. Please try again.');
+      // Handle error (e.g., display error message)
+      console.error("Login failed");
     }
   };
 
