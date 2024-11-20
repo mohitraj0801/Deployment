@@ -1,14 +1,26 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Bell, User, Leaf } from 'lucide-react';
+import { ShoppingCart, Bell, User, Leaf, Import } from 'lucide-react';
 import './index.css';
 import './App.css';
 import RegistrationPage from './components/RegistrationPage';
 import RestaurantForm from './components/RestaurantForm';
+import RestaurantFoodPage from './components/RestaurantFoodPage';
 import FoodBankForm from './components/FoodBankForm';
-import FoodHeroesPage from './components/FoodHeroesPage';
+import HomePage from './components/HomePage';
+import DeliveryPage from './components/DeliveryPage';
 import DontWasteFoodPage from './components/DontWasteFoodPage';
+import ContactPage from './components/ContactPage';
+import AboutPage from './components/AboutPage';
+import AvailableFoodBanks from './components/AvailableFoodBanks';
+import FoodBankDetails from './components/FoodBankDetails';
+import MealConnectApp from './components/MealConnectApp';
+import OrderConfirmation from './components/OrderConfirmation';
+import FoodBankDashboard from './components/FoodBankDashboard';
+import RestaurantDashboard from './components/RestaurantDashboard';
+import MealConnectDashboard from './components/MealConnectDashboard';
 import { Link } from 'react-router-dom';
+
 
 
 const LoginPage = () => {
@@ -17,16 +29,28 @@ const LoginPage = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    
-    const mockEmail = 'user@gmail.com';
-    const mockPassword = 'password';
+  const handleLogin = async (e) => {
+    e.preventDefault(); // Prevent the default form submission
 
-    if (email === mockEmail && password === mockPassword) {
-      navigate('/register'); 
+    const response = await fetch("http://localhost:5002/api/auth/login", { // Adjust the endpoint as necessary
+      method: "POST", // Use POST for login
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    console.log(response);
+
+
+    if (response.ok) {
+      const data = await response.json();
+      // Handle successful login (e.g., save token, redirect user)
+      console.log(data);
+      navigate('/restaurant-form'); // Navigate to home page on successful login
     } else {
-      alert('Invalid credentials. Please try again.');
+      // Handle error (e.g., display error message)
+      console.error("Login failed");
     }
   };
 
@@ -45,8 +69,8 @@ const LoginPage = () => {
               </div>
               <div className="flex space-x-6">
               <div className="flex space-x-6">
-                  <Link to="/food-heroes" className="hover:text-gray-600">Home</Link>
-                  <Link to="/delivery" className="hover:text-gray-600">Delivery</Link>
+                  <Link to="/home-page" className="hover:text-gray-600">Home</Link>
+                  <Link to="/Delivery-Page" className="hover:text-gray-600">Delivery</Link>
                   <Link to="/about" className="hover:text-gray-600">About</Link>
                   <Link to="/contact" className="hover:text-gray-600">Contact</Link>
               </div>
@@ -81,7 +105,7 @@ const LoginPage = () => {
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div className="rounded-3xl overflow-hidden">
                 <img
-                  src="/images/volunteersImage.jpg"
+                  src="/images/VolunteersImage.jpg"
                   alt="Volunteers packing food"
                   className="w-full h-full object-cover"
                 />
@@ -152,10 +176,11 @@ const LoginPage = () => {
               </button>
               <div className="text-center text-sm">
                 <span className="text-gray-600">Don't have an account? </span>
-                <a href="#" className="text-blue-600 hover:underline">
+                <Link to="/register" className="text-blue-600 hover:underline">
                   Create an account
-                </a>
+                </Link>
               </div>
+
             </form>
           </div>
         </div>
@@ -199,6 +224,79 @@ const MainApp = () => {
           }
         />
         <Route
+          path="/order-confirmation"
+          element={
+            <ProtectedRoute>
+              <OrderConfirmation />
+            </ProtectedRoute>
+          }
+        />
+        
+         <Route
+          path="/meal-connect-app"
+          element={
+            <ProtectedRoute>
+              <MealConnectApp />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/food-bank-details"
+          element={
+            <ProtectedRoute>
+              <FoodBankDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/food-bank-dashboard"
+          element={
+            <ProtectedRoute>
+              <FoodBankDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/restaurant-dashboard"
+          element={
+            <ProtectedRoute>
+              <RestaurantDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/meal-connect-dashboard"
+          element={
+            <ProtectedRoute>
+              <MealConnectDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/available-food-banks"
+          element={
+            <ProtectedRoute>
+              <AvailableFoodBanks />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <ProtectedRoute>
+              <ContactPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <ProtectedRoute>
+              <AboutPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/foodbank-form"
           element={
             <ProtectedRoute>
@@ -207,10 +305,26 @@ const MainApp = () => {
           }
         />
         <Route
-          path="/food-heroes"
+          path="/home-page"
           element={
             <ProtectedRoute>
-              <FoodHeroesPage />
+              <HomePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/Delivery-Page"
+          element={
+            <ProtectedRoute>
+              <DeliveryPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/restaurant-food-page"
+          element={
+            <ProtectedRoute>
+              <RestaurantFoodPage />
             </ProtectedRoute>
           }
         />
@@ -227,4 +341,4 @@ const MainApp = () => {
   );
 };
 
-export default MainApp; 
+export default MainApp;

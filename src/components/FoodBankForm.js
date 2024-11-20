@@ -27,14 +27,14 @@ const FoodBankForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Food Bank form submitted:', formData);
+    navigate('/restaurant-food-page'); // Navigate to the Food Bank Details page
   };
-
   return (
     <div className="max-w-6xl mx-auto p-6">
       <h1 className="text-2xl font-bold mb-6">Food Bank Registration</h1>
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        
+        {/* Food Bank Details Section */}
         <div className="bg-orange-100 p-6 rounded-lg">
           <h2 className="text-xl font-bold mb-4">Food Bank Details</h2>
           <div className="space-y-4">
@@ -97,7 +97,7 @@ const FoodBankForm = () => {
           </div>
         </div>
 
-        
+        {/* Contact Person Details Section */}
         <div className="bg-purple-100 p-6 rounded-lg">
           <h2 className="text-xl font-bold mb-4">Contact Person Details</h2>
           <div className="space-y-4">
@@ -132,7 +132,7 @@ const FoodBankForm = () => {
           </div>
         </div>
 
-        
+        {/* Food Acceptance Details Section */}
         <div className="bg-green-100 p-6 rounded-lg">
           <h2 className="text-xl font-bold mb-4">Food Acceptance Details</h2>
           <div className="space-y-4">
@@ -153,7 +153,7 @@ const FoodBankForm = () => {
           </div>
         </div>
 
-        
+        {/* Storage and Handling Section */}
         <div className="bg-blue-100 p-6 rounded-lg">
           <h2 className="text-xl font-bold mb-4">Storage and Handling</h2>
           <div className="space-y-4">
@@ -174,7 +174,7 @@ const FoodBankForm = () => {
           </div>
         </div>
 
-        
+        {/* Pickup Scheduling Section */}
         <div className="bg-yellow-100 p-6 rounded-lg">
           <h2 className="text-xl font-bold mb-4">Pickup Scheduling</h2>
           <div className="space-y-4">
@@ -194,15 +194,15 @@ const FoodBankForm = () => {
             />
           </div>
         </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 mt-6 md:col-span-2"
+        >
+          Submit
+        </button>
       </form>
-      
-      
-      <button
-        type="submit"
-        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 mt-6"
-      >
-        Submit
-      </button>
     </div>
   );
 };

@@ -12,20 +12,9 @@ const RegistrationPage = () => {
   const [error, setError] = useState('');
 
   
-  const mockCredentials = {
-    restaurant: {
-      name: 'restaurant',
-      email: 'restaurant@gmail.com',
-      password: 'password'
-    },
-    foodBank: {
-      name: 'foodbank',
-      email: 'foodbank@gmail.com',
-      password: 'password'
-    }
-  };
+  
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
@@ -35,28 +24,44 @@ const RegistrationPage = () => {
       return;
     }
 
-    
-    if (userType === 'restaurant') {
-      if (email === mockCredentials.restaurant.email && 
-          password === mockCredentials.restaurant.password) {
-        navigate('/restaurant-form', { 
-          state: { name, address, email }
-        });
-      } else {
-        setError('Invalid credentials. Use restaurant@gmail.com and password');
-      }
-    } else {
-      if (email === mockCredentials.foodBank.email && 
-          password === mockCredentials.foodBank.password) {
-        navigate('/foodbank-form', {
-          state: { name, address, email }
-        });
-      } else {
-        setError('Invalid credentials. Use foodbank@gmail.com and password');
-      }
+   // Prepare the registration data
+   const registrationData = {
+    name,
+    email,
+    password,
+    role: userType, // Assuming role is determined by userType
+    address: {
+      street: address, // Assuming address is a single string; adjust as needed
+      city: '', // You can add more fields for address if needed
+      state: '',
+      zip: ''
     }
   };
 
+  try {
+    const response = await fetch("http://localhost:5002/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(registrationData),
+    });
+
+    // if (!response.ok) {
+    //   const errorData = await response.json();
+    //   setError(errorData.errors ? errorData.errors.map(err => err.msg).join(', ') : 'Registration failed');
+    //   return;
+    // }
+
+    // const data = await response.json();
+    // Handle successful registration (e.g., save token, redirect user)
+    // console.log(data);
+    navigate('/home-page'); // Navigate to home page or another page on successful registration
+  } catch (error) {
+    console.error("Registration failed:", error);
+    setError('Registration failed. Please try again.');
+  }
+};
   return (
     <div className="min-h-screen bg-white flex justify-center items-center">
       <div className="w-full max-w-md bg-white p-8 shadow-lg rounded-b-3xl">
